@@ -34,5 +34,23 @@
     <p>Student exhibited a <i>{{composite['Processing Speed']['Qualitative Description']}}</i> performance compared to other children his age.</p>
 
     <h2>Subtests Score Summary</h2>
+    <table>
+        <tr>
+            <th>Subtest</th>
+            <th>Standard Score</th>
+            <th>95% Confidence Interval</th>
+            <th>Percentile Rank</th>
+            <th>Qualitative Descriptor</th>
+        </tr>
+    {% for row in subtest.values() %}
+        <tr>
+            <td>{{row['Subtest']}}</td>
+            <td>{{row['Standard\nScore']}}</td>
+            <td>{{row['95%\nConfidence\nInterval']}}</td>
+            <td>{{row['Percentile\nRank']}}</td>
+            <td>{{row['Qualitative Description']}}</td>
+        </tr>
+    {% endfor %}
+    </table>
 </body>
 </html>
