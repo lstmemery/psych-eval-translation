@@ -20,6 +20,8 @@ def convert_table_to_dicts(docx2txt) -> dict[str, OrderedDict[str, dict[str, str
                 elif cell.text == 'Pseudoword Decoding' and not subtest_found:
                     subtest_found = True
                     table_dicts['subtest'] = extract_subtest_score_summary(table)
+                elif cell.text == 'Oral Discourse Comprehension':
+                    table_dicts['component'] = extract_component_score_summary(table)
 
     return table_dicts
 
@@ -42,7 +44,7 @@ def extract_subtest_score_summary(table) -> OrderedDict[str, dict[str, str | flo
     """Extract the subtest score summary from a table."""
     flattened = flatten_list_of_lists([[cell.text for cell in row.cells] for row in table.rows])
     header_start = flattened.index('Subtest')
-    header_end = flattened.index('Growth\nScore') + 1 # SEM appears twice in the table
+    header_end = flattened.index('Growth\nScore') + 1
     header_length = header_end - header_start + 1
 
     score = OrderedDict()
@@ -53,6 +55,33 @@ def extract_subtest_score_summary(table) -> OrderedDict[str, dict[str, str | flo
         score[flattened[row]] = subtest_dict
         if subtest_dict['Subtest'] == 'Math Fluency-Multiplication':
             return score  # Avoid footnotes
+    return score
+
+
+def extract_component_score_summary(table) -> OrderedDict[str, dict[str, str | float]]:
+    """Extract the component score summary from a table."""
+    flattened = flatten_list_of_lists([[cell.text for cell in row.cells] for row in table.rows])
+    header_start = flattened.index('Subtest Component')
+    header_end = flattened.index('Qualitative\nDescription') + 1
+    header_length = header_end - header_start + 1
+
+    score = OrderedDict()
+    header = flattened[header_start:header_end + 1]
+
+    allowed_components = {
+        'Receptive Vocabulary',
+        'Oral Discourse Comprehension',
+        'Sentence Combining',
+        'Sentence Building',
+        'Expressive Vocabulary',
+        'Oral Word Fluency',
+        'Sentence Repetition',
+    }
+
+    for row in range(header_end + 1, len(flattened), header_length):
+        if flattened[row]  in allowed_components:
+            subtest_dict = {name: value for name, value in zip(header, flattened[row:row + header_length])}
+            score[flattened[row]] = subtest_dict
     return score
 
 
@@ -88,6 +117,7 @@ if __name__ == '__main__':
                 rendered = Template(template_file.read()).render(
                     composite=table_dicts['composite'],
                     subtest=table_dicts['subtest'],
+                    component=table_dicts['component'],
                 )
                 with open('../../data/composite_score_summary.html', 'w') as f:
                     f.write(rendered)
