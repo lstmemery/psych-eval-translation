@@ -12,6 +12,7 @@ def convert_table_to_dicts(docx2txt) -> dict[str, OrderedDict[str, dict[str, str
 
     table_dicts = {}
     subtest_found = False
+    wiat_composite_found = False
     for table in docx2txt.tables:
         for row in table.rows:
             for cell in row.cells:
@@ -22,6 +23,9 @@ def convert_table_to_dicts(docx2txt) -> dict[str, OrderedDict[str, dict[str, str
                     table_dicts['subtest'] = extract_subtest_score_summary(table)
                 elif cell.text == 'Oral Discourse Comprehension':
                     table_dicts['component'] = extract_component_score_summary(table)
+                elif cell.text == 'Total Achievement' and not wiat_composite_found:
+                    wiat_composite_found = True
+                    table_dicts['wiat_composite'] = extract_wiat_composite_score_summary(table)
 
     return table_dicts
 
@@ -85,6 +89,20 @@ def extract_component_score_summary(table) -> OrderedDict[str, dict[str, str | f
     return score
 
 
+def extract_wiat_composite_score_summary(table) -> OrderedDict[str, dict[str, str | float]]:
+    """Extract the composite score summary from a table."""
+    flattened = flatten_list_of_lists([[cell.text for cell in row.cells] for row in table.rows])
+    header_start = flattened.index('Composite')
+    header_end = flattened.index('Qualitative\nDescription') + 1
+    header_length = header_end - header_start + 1
+
+    score = OrderedDict()
+    header = flattened[header_start:header_end + 1]
+    for row in range(header_end + 1, len(flattened), header_length):
+        score[flattened[row]] = {name: value for name, value in zip(header, flattened[row:row + header_length])}
+    return score
+
+
 def get_qualitative_description(score: float) -> str:
     if score > 145:
         return 'Very Superior'
@@ -118,6 +136,7 @@ if __name__ == '__main__':
                     composite=table_dicts['composite'],
                     subtest=table_dicts['subtest'],
                     component=table_dicts['component'],
+                    wiat_composite=table_dicts['wiat_composite'],
                 )
                 with open('../../data/composite_score_summary.html', 'w') as f:
                     f.write(rendered)

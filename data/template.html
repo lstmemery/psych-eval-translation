@@ -53,7 +53,7 @@
     {% endfor %}
     </table>
 
-    <h3>Subtests Component Score Summary</h3>
+    <h2>Subtests Component Score Summary</h2>
     <table>
         <tr>
             <th>Subtest Component</th>
@@ -114,6 +114,26 @@
             <td>{{row['Qualitative\nDescription']}}</td>
         </tr>
     </table>
+
+    <h2>Composite Score Summary</h2>
+    <table>
+        <tr>
+            <th>Composite</th>
+            <th>Standard Score</th>
+            <th>95% Confidence Interval</th>
+            <th>Percentile Rank</th>
+            <th>Qualitative Description</th>
+        </tr>
+    {% for row in wiat_composite.values() %}
+        <tr>
+            <td>{{row['Composite']}}</td>
+            <td>{{row['Standard\nScore']}}</td>
+            <td>{{row['95%\nConfidence\nInterval']}}</td>
+            <td>{{row['Percentile\nRank']}}</td>
+            <td>{{row['Qualitative\nDescription']}}</td>
+        </tr>
+    {% endfor %}
+        </table>
 
 </body>
 </html>
