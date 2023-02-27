@@ -52,5 +52,68 @@
         </tr>
     {% endfor %}
     </table>
+
+    <h3>Subtests Component Score Summary</h3>
+    <table>
+        <tr>
+            <th>Subtest Component</th>
+            <th>Standard Score</th>
+            <th>Percentile Rank</th>
+            <th>Qualitative Description</th>
+        </tr>
+        <tr><td><strong>Listening Comprehension</strong></td></tr>
+    {% set row = component['Receptive Vocabulary'] %}
+        <tr>
+            <td>{{row['Subtest Component']}}</td>
+            <td>{{row['Standard\nScore']}}</td>
+            <td>{{row['Percentile\nRank']}}</td>
+            <td>{{row['Qualitative\nDescription']}}</td>
+        </tr>
+            {% set row = component['Oral Discourse Comprehension'] %}
+        <tr>
+            <td>{{row['Subtest Component']}}</td>
+            <td>{{row['Standard\nScore']}}</td>
+            <td>{{row['Percentile\nRank']}}</td>
+            <td>{{row['Qualitative\nDescription']}}</td>
+        </tr>
+        <tr><td><strong>Sentence Composition</strong></td></tr>
+            {% set row = component['Sentence Combining'] %}
+        <tr>
+            <td>{{row['Subtest Component']}}</td>
+            <td>{{row['Standard\nScore']}}</td>
+            <td>{{row['Percentile\nRank']}}</td>
+            <td>{{row['Qualitative\nDescription']}}</td>
+        </tr>
+            {% set row = component['Sentence Building'] %}
+        <tr>
+            <td>{{row['Subtest Component']}}</td>
+            <td>{{row['Standard\nScore']}}</td>
+            <td>{{row['Percentile\nRank']}}</td>
+            <td>{{row['Qualitative\nDescription']}}</td>
+        </tr>
+        <tr><td><strong>Oral Expression</strong></td></tr>
+            {% set row = component['Expressive Vocabulary'] %}
+        <tr>
+            <td>{{row['Subtest Component']}}</td>
+            <td>{{row['Standard\nScore']}}</td>
+            <td>{{row['Percentile\nRank']}}</td>
+            <td>{{row['Qualitative\nDescription']}}</td>
+        </tr>
+            {% set row = component['Oral Word Fluency'] %}
+        <tr>
+            <td>{{row['Subtest Component']}}</td>
+            <td>{{row['Standard\nScore']}}</td>
+            <td>{{row['Percentile\nRank']}}</td>
+            <td>{{row['Qualitative\nDescription']}}</td>
+        </tr>
+            {% set row = component['Sentence Repetition'] %}
+        <tr>
+            <td>{{row['Subtest Component']}}</td>
+            <td>{{row['Standard\nScore']}}</td>
+            <td>{{row['Percentile\nRank']}}</td>
+            <td>{{row['Qualitative\nDescription']}}</td>
+        </tr>
+    </table>
+
 </body>
 </html>
