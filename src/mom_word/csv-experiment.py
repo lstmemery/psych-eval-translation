@@ -40,7 +40,10 @@ def extract_composite_score_summary(table) -> OrderedDict[str, dict[str, str | f
     score = OrderedDict()
     header = flattened[header_start:header_end + 1]
     for row in range(header_end + 1, len(flattened), header_length):
-        score[flattened[row]] = {name: value for name, value in zip(header, flattened[row:row + header_length])}
+        subtest_dict = {name: value for name, value in zip(header, flattened[row:row + header_length])}
+        subtest_dict['name'] = subtest_dict['Composite']
+        subtest_dict['qd'] = subtest_dict['Qualitative Description']
+        score[flattened[row]] = subtest_dict
     return score
 
 
@@ -56,6 +59,8 @@ def extract_subtest_score_summary(table) -> OrderedDict[str, dict[str, str | flo
     for row in range(header_end + 1, len(flattened), header_length):
         subtest_dict = {name: value for name, value in zip(header, flattened[row:row + header_length])}
         subtest_dict['Qualitative Description'] = get_qualitative_description(float(subtest_dict['Standard\nScore']))
+        subtest_dict['name'] = subtest_dict['Subtest']
+        subtest_dict['qd'] = subtest_dict['Qualitative Description']
         score[flattened[row]] = subtest_dict
         if subtest_dict['Subtest'] == 'Math Fluency-Multiplication':
             return score  # Avoid footnotes
@@ -83,8 +88,10 @@ def extract_component_score_summary(table) -> OrderedDict[str, dict[str, str | f
     }
 
     for row in range(header_end + 1, len(flattened), header_length):
-        if flattened[row]  in allowed_components:
+        if flattened[row] in allowed_components:
             subtest_dict = {name: value for name, value in zip(header, flattened[row:row + header_length])}
+            subtest_dict['name'] = subtest_dict['Subtest Component']
+            subtest_dict['qd'] = subtest_dict['Qualitative\nDescription']
             score[flattened[row]] = subtest_dict
     return score
 
@@ -99,7 +106,10 @@ def extract_wiat_composite_score_summary(table) -> OrderedDict[str, dict[str, st
     score = OrderedDict()
     header = flattened[header_start:header_end + 1]
     for row in range(header_end + 1, len(flattened), header_length):
-        score[flattened[row]] = {name: value for name, value in zip(header, flattened[row:row + header_length])}
+        subtest_dict = {name: value for name, value in zip(header, flattened[row:row + header_length])}
+        subtest_dict['name'] = subtest_dict['Composite']
+        subtest_dict['qd'] = subtest_dict['Qualitative\nDescription']
+        score[flattened[row]] = subtest_dict
     return score
 
 

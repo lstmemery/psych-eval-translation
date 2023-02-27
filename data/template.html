@@ -9,15 +9,21 @@
     <h2>Composite Scores Summary</h2>
     <table>
         <tr>
-            {% for header_cell in composite['Verbal Comprehension'].keys() %}
-            <th>{{ header_cell }}</th>
-            {% endfor %}
+            <th>Scale</th>
+            <th>Composite Score</th>
+            <th>Percentile Rank</th>
+            <th>95% Confidence Interval</th>
+            <th>Qualitative Description</th>
         </tr>
     {% for row in composite.values() %}
         <tr>
-            {% for cell in row.values() %}
-            <td>{{ cell }}</td>
-            {% endfor %}
+            <tr>
+            <td>{{row['name']}}</td>
+            <td>{{row['Sum of\nScaled Scores']}}</td>
+            <td>{{row['Percentile Rank']}}</td>
+            <td>{{row['95% Confidence\nInterval']}}</td>
+            <td>{{row['Qualitative Description']}}</td>
+        </tr>
         </tr>
     {% endfor %}
         </table>
@@ -119,7 +125,7 @@
     <table>
         <tr>
             <th>Composite</th>
-            <th>Standard Score</th>
+            <th>Standard Scores</th>
             <th>95% Confidence Interval</th>
             <th>Percentile Rank</th>
             <th>Qualitative Description</th>
@@ -134,6 +140,15 @@
         </tr>
     {% endfor %}
         </table>
+
+    {% set subtest_of_interest = wiat_composite['Oral Language'] %}
+
+    <p>{{subtest_of_interest['name']}}</p>
+    <p>Student’s overall performance for {{subtest_of_interest['name']}} was in the <i>{{subtest_of_interest['qd']}}</i> range with a standard score of {{subtest_of_interest['Standard\nScore']}} and percentile rank of {{ subtest_of_interest['Percentile\nRank']}}.</p>
+
+    {% set subtest_of_interest = subtest['Listening Comprehension'] %}
+    <p>Student’s overall performance for {{subtest_of_interest['name']}} was in the <i>{{subtest_of_interest['qd']}}</i> range with a standard score of {{subtest_of_interest['Standard\nScore']}} and percentile rank of {{ subtest_of_interest['Percentile\nRank']}}.</p>
+
 
 </body>
 </html>
