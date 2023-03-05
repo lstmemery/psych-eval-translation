@@ -2,9 +2,11 @@
 
 import csv
 from collections import OrderedDict
+from typing import TextIO
 
 import docx
 from jinja2 import Template
+import click as cl
 
 
 def convert_table_to_dicts(docx2txt) -> dict[str, OrderedDict[str, dict[str, str | float]]]:
@@ -135,8 +137,11 @@ def flatten_list_of_lists(list_of_lists: list[list[str]]) -> list[str]:
     return [item for sublist in list_of_lists for item in sublist]
 
 
-if __name__ == '__main__':
-    with open('../../data/HL WISC WIAT deidentified.docx', 'rb') as f:
+@cl.command()
+@cl.argument('docx_file', type=cl.File('rb'))
+@cl.argument('output_file', type=cl.File('w'))
+def main(docx_file: str, output_file: str):
+    with open(docx_file, 'rb') as f:
         docx2txt = docx.Document(f)
         table_dicts = convert_table_to_dicts(docx2txt)
 
@@ -148,7 +153,12 @@ if __name__ == '__main__':
                     component=table_dicts['component'],
                     wiat_composite=table_dicts['wiat_composite'],
                 )
-                with open('../../data/composite_score_summary.html', 'w') as f:
+                with open(output_file, 'w') as f:
                     f.write(rendered)
+                print('Success')
+        else:
+            print('Failed')
 
 
+if __name__ == '__main__':
+    main()
