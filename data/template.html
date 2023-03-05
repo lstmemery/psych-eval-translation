@@ -145,10 +145,87 @@
 
     <p>{{subtest_of_interest['name']}}</p>
     <p>Student’s overall performance for {{subtest_of_interest['name']}} was in the <i>{{subtest_of_interest['qd']}}</i> range with a standard score of {{subtest_of_interest['Standard\nScore']}} and percentile rank of {{ subtest_of_interest['Percentile\nRank']}}.</p>
-
     {% set subtest_of_interest = subtest['Listening Comprehension'] %}
     <p>Student’s overall performance for {{subtest_of_interest['name']}} was in the <i>{{subtest_of_interest['qd']}}</i> range with a standard score of {{subtest_of_interest['Standard\nScore']}} and percentile rank of {{ subtest_of_interest['Percentile\nRank']}}.</p>
+    <ul>
+        {% set subtest_of_interest = component['Receptive Vocabulary'] %}
+        <li>On the {{subtest_of_interest['name']}} task, Student scored in the <i>{{subtest_of_interest['qd']}}</i> range with a standard score of {{subtest_of_interest['Standard\nScore']}} and percentile rank of {{ subtest_of_interest['Percentile\nRank']}}.</li>
+        {% set subtest_of_interest = component['Oral Discourse Comprehension'] %}
+        <li>On the {{subtest_of_interest['name']}} task, Student scored in the <i>{{subtest_of_interest['qd']}}</i> range with a standard score of {{subtest_of_interest['Standard\nScore']}} and percentile rank of {{ subtest_of_interest['Percentile\nRank']}}.</li>
+    </ul>
+    {% set subtest_of_interest = subtest['Oral Expression'] %}
+    <p>Student’s overall performance in the subtest_of_interest['name'] composite was in the <i>{{subtest_of_interest['qd']}}</i> range with a standard score of {{subtest_of_interest['Standard\nScore']}} and percentile rank of {{ subtest_of_interest['Percentile\nRank']}}. The subtests of subtest_of_interest['name'] included:</p>
+    <ul>
+        {% set subtest_of_interest = component['Expressive Vocabulary'] %}
+        <li>Student had a <i>{{subtest_of_interest['qd']}}</i> performance in subtest_of_interest['name'], with a standard score of {{subtest_of_interest['Standard\nScore']}} and a percentile rank of {{ subtest_of_interest['Percentile\nRank']}}.</li>
+        {% set subtest_of_interest = component['Oral Word Fluency'] %}
+        <li>Student had a <i>{{subtest_of_interest['qd']}}</i> performance in subtest_of_interest['name'], with a standard score of {{subtest_of_interest['Standard\nScore']}} and a percentile rank of {{ subtest_of_interest['Percentile\nRank']}}.</li>
+        {% set subtest_of_interest = component['Sentence Repetition'] %}
+        <li>Student had a <i>{{subtest_of_interest['qd']}}</i> performance in subtest_of_interest['name'], with a standard score of {{subtest_of_interest['Standard\nScore']}} and a percentile rank of {{ subtest_of_interest['Percentile\nRank']}}.</li>
+    </ul>
 
+    {% set subtest_of_interest = wiat_composite['Total Reading'] %}
+
+    <p>{{subtest_of_interest['name']}}</p>
+    <p>Student’s overall performance for {{subtest_of_interest['name']}} was in the <i>{{subtest_of_interest['qd']}}</i> range with a standard score of {{subtest_of_interest['Standard\nScore']}} and percentile rank of {{ subtest_of_interest['Percentile\nRank']}}.</p>
+
+    {% set subtest_of_interest = wiat_composite['Basic Reading'] %}
+    <p>Student’s overall performance in the subtest_of_interest['name'] composite was in the <i>{{subtest_of_interest['qd']}}</i> range with a standard score of {{subtest_of_interest['Standard\nScore']}} and percentile rank of {{ subtest_of_interest['Percentile\nRank']}}. The subtests of subtest_of_interest['name'] included:</p>
+    <ul>
+        {% set subtest_of_interest = subtest['Word Reading'] %}
+        <li>Student had a <i>{{subtest_of_interest['qd']}}</i> performance in subtest_of_interest['name'], with a standard score of {{subtest_of_interest['Standard\nScore']}} and a percentile rank of {{ subtest_of_interest['Percentile\nRank']}}.</li>
+        {% set subtest_of_interest = subtest['Pseudoword Decoding'] %}
+        <li>Student had a <i>{{subtest_of_interest['qd']}}</i> performance in subtest_of_interest['name'], with a standard score of {{subtest_of_interest['Standard\nScore']}} and a percentile rank of {{ subtest_of_interest['Percentile\nRank']}}.</li>
+    </ul>
+    {% set subtest_of_interest = wiat_composite['Reading Comprehension\nand Fluency'] %}
+    <p>Student’s overall performance in the subtest_of_interest['name'] composite was in the <i>{{subtest_of_interest['qd']}}</i> range with a standard score of {{subtest_of_interest['Standard\nScore']}} and percentile rank of {{ subtest_of_interest['Percentile\nRank']}}. The subtests of subtest_of_interest['name'] included:</p>
+    <ul>
+        {% set subtest_of_interest = subtest['Reading Comprehension'] %}
+        <li>Student had a <i>{{subtest_of_interest['qd']}}</i> performance in subtest_of_interest['name'], with a standard score of {{subtest_of_interest['Standard\nScore']}} and a percentile rank of {{ subtest_of_interest['Percentile\nRank']}}.</li>
+        {% set subtest_of_interest = subtest['Oral Reading Fluency'] %}
+        <li>Student had a <i>{{subtest_of_interest['qd']}}</i> performance in subtest_of_interest['name'], with a standard score of {{subtest_of_interest['Standard\nScore']}} and a percentile rank of {{ subtest_of_interest['Percentile\nRank']}}.</li>
+    </ul>
+
+{% set subtest_of_interest = wiat_composite['Mathematics'] %}
+
+    <p>{{subtest_of_interest['name']}}</p>
+    <p>Student’s overall performance for {{subtest_of_interest['name']}} was in the <i>{{subtest_of_interest['qd']}}</i> range with a standard score of {{subtest_of_interest['Standard\nScore']}} and percentile rank of {{ subtest_of_interest['Percentile\nRank']}}.</p>
+    <ul>
+        {% set subtest_of_interest = subtest['Math Problem Solving'] %}
+        <li>Student had a <i>{{subtest_of_interest['qd']}}</i> performance in subtest_of_interest['name'], with a standard score of {{subtest_of_interest['Standard\nScore']}} and a percentile rank of {{ subtest_of_interest['Percentile\nRank']}}.</li>
+        {% set subtest_of_interest = subtest['Numerical Operations'] %}
+        <li>Student had a <i>{{subtest_of_interest['qd']}}</i> performance in subtest_of_interest['name'], with a standard score of {{subtest_of_interest['Standard\nScore']}} and a percentile rank of {{ subtest_of_interest['Percentile\nRank']}}.</li>
+        {% set subtest_of_interest = wiat_composite['Math Fluency'] %}
+        <li>Student had a <i>{{subtest_of_interest['qd']}}</i> performance in subtest_of_interest['name'], with a standard score of {{subtest_of_interest['Standard\nScore']}} and a percentile rank of {{ subtest_of_interest['Percentile\nRank']}}.</li>
+        <ul>
+            {% set subtest_of_interest = subtest['Math Fluency-Addition'] %}
+            <li>Student had a <i>{{subtest_of_interest['qd']}}</i> performance in subtest_of_interest['name'], with a standard score of {{subtest_of_interest['Standard\nScore']}} and a percentile rank of {{ subtest_of_interest['Percentile\nRank']}}.</li>
+            {% set subtest_of_interest = subtest['Math Fluency-Subtraction'] %}
+            <li>Student had a <i>{{subtest_of_interest['qd']}}</i> performance in subtest_of_interest['name'], with a standard score of {{subtest_of_interest['Standard\nScore']}} and a percentile rank of {{ subtest_of_interest['Percentile\nRank']}}.</li>
+            {% set subtest_of_interest = wiat_composite['Math Fluency-Multiplication'] %}
+            <li>Student had a <i>{{subtest_of_interest['qd']}}</i> performance in subtest_of_interest['name'], with a standard score of {{subtest_of_interest['Standard\nScore']}} and a percentile rank of {{ subtest_of_interest['Percentile\nRank']}}.</li>
+        </ul>
+    </ul>
+
+{% set subtest_of_interest = wiat_composite['Written Expression'] %}
+
+    <p>{{subtest_of_interest['name']}}</p>
+    <p>Student’s overall performance for {{subtest_of_interest['name']}} was in the <i>{{subtest_of_interest['qd']}}</i> range with a standard score of {{subtest_of_interest['Standard\nScore']}} and percentile rank of {{ subtest_of_interest['Percentile\nRank']}}.</p>
+    <ul>
+        {% set subtest_of_interest = subtest['Sentence Composition'] %}
+        <li>Student had a <i>{{subtest_of_interest['qd']}}</i> performance in subtest_of_interest['name'], with a standard score of {{subtest_of_interest['Standard\nScore']}} and a percentile rank of {{ subtest_of_interest['Percentile\nRank']}}.</li>
+        <ul>
+            {% set subtest_of_interest = component['Sentence Combining'] %}
+            <li>Student had a <i>{{subtest_of_interest['qd']}}</i> performance in subtest_of_interest['name'], with a standard score of {{subtest_of_interest['Standard\nScore']}} and a percentile rank of {{ subtest_of_interest['Percentile\nRank']}}.</li>
+            {% set subtest_of_interest = component['Sentence Building'] %}
+            <li>Student had a <i>{{subtest_of_interest['qd']}}</i> performance in subtest_of_interest['name'], with a standard score of {{subtest_of_interest['Standard\nScore']}} and a percentile rank of {{ subtest_of_interest['Percentile\nRank']}}.</li>
+        </ul>
+        {% set subtest_of_interest = subtest['Spelling'] %}
+        <li>Student had a <i>{{subtest_of_interest['qd']}}</i> performance in subtest_of_interest['name'], with a standard score of {{subtest_of_interest['Standard\nScore']}} and a percentile rank of {{ subtest_of_interest['Percentile\nRank']}}.</li>
+    </ul>
+
+    {% set subtest_of_interest = wiat_composite['Total Achievement'] %}
+    <p>Overall, student exhibited a {{subtest_of_interest['name']}} in the <i>{{subtest_of_interest['qd']}}</i> range, with a standard score of {{subtest_of_interest['Standard\nScore']}} and a percentile rank of {{ subtest_of_interest['Percentile\nRank']}}.</p>
 
 </body>
 </html>
