@@ -138,8 +138,8 @@ def flatten_list_of_lists(list_of_lists: list[list[str]]) -> list[str]:
 
 
 @cl.command()
-@cl.argument('docx_file', type=cl.File('rb'))
-@cl.argument('output_file', type=cl.File('w'))
+@cl.argument('docx_file')
+@cl.argument('output_file')
 def main(docx_file: str, output_file: str):
     with open(docx_file, 'rb') as f:
         docx2txt = docx.Document(f)
