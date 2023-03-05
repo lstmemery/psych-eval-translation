@@ -18,7 +18,8 @@ Changelog = "https://github.com/lstmemery/mom-word/releases"
 [tool.poetry.dependencies]
 python = "^3.8"
 click = ">=8.0.1"
-docx2txt = "^0.8"
+jinja2 = "^3.1.2"
+python-docx = "^0.8.11"
 
 [tool.poetry.dev-dependencies]
 Pygments = ">=2.10.0"
